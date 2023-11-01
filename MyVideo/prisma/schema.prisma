@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_user {
+  id          BigInt    @id
+  username    String    @default("微信用户") @db.VarChar(255)
+  password    String?   @db.VarChar(255)
+  phone       String?   @db.VarChar(15)
+  status      Int?      @default(1)
+  name        String?   @db.VarChar(255)
+  gender      String?   @db.VarChar(255)
+  portrait    String?   @db.LongText
+  open_id     String?   @db.VarChar(255)
+  role        BigInt?   @default(1)
+  create_time DateTime? @db.DateTime(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_user_video {
+  id       BigInt
+  user_id  BigInt
+  video_id BigInt
+  like     Int?   @default(0)
+
+  @@id([id, user_id, video_id])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_video {
+  id         BigInt   @id
+  vid_url    String?  @db.Text
+  vid_tag    String?  @db.VarChar(255)
+  love_cnt   Int?     @default(0)
+  vid_detail String?  @db.VarChar(255)
+  vid_name   String?  @db.VarChar(255)
+  status     Boolean? @default(true)
+}

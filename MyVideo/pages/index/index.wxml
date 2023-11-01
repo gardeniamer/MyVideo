@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<page-meta page-style="overflow: {{visible ? 'visible' : 'hidden'}}" />
+<view class="vedioAll">
+  <view wx:for="{{vedio}}" wx:key="id" class="vedio">
+    <video 
+    id="{{item.id}}" 
+    src="{{item.vid_url}}" 
+    controls="{{false}}" 	
+    show-center-play-btn="{{false}}"
+    enable-progress-gesture = "{{false}}" 
+    data-videoid="{{item.id}}" 
+    data-id="video" 
+    data-special="{{item.user_id}}" 
+    catchtap="siki" 
+    catchlongpress="increase" 
+    catchtouchend="decrease" 
+    bindtimeupdate="changeTime" 
+    loop="{{true}}">
+      <image src="https://3434729.s80i.faiusr.com/4/103/AFAIABAEGAAgkpOlqQYopteHhQIwsAk4xgo.png" mode="" class="playBtn" hidden="{{play.ing && (play.id == item.id)}}"/>
+      <view class="timeVisible" hidden="{{changed == true}}">{{currentTime}}s / {{duration}}s</view>
+      <view class="all">
+        <image src="https://edu.faisys.com/dist/editor/image/headDefault.4fe57e8d.png" mode="" class="head"/>
+        <view class="like">
+        <image src="https://3434729.s80i.faiusr.com/4/103/AFAIABAEGAAgr5WlqQYokKfE9wMwsAk4sAk.png" mode="" class="inner" wx:if="{{item.user_id == null}}" catchtap="siki" data-videoid="{{item.id}}" data-id="inner" data-special="{{item.user_id}}"/>
+        <image src="https://3434729.s80i.faiusr.com/4/103/AFAIABAEGAAg4ZWlqQYolIaQkAIwsAk4sAk.png" mode="" class="like" wx:if="{{item.user_id}}"  catchtap="cancleLike" data-videoid="{{item.id}}" data-id="cancleLike"/>
+        <view class="likeCount">{{item.love_cnt}}</view>
+        </view>
+        <image src="https://3434729.s80i.faiusr.com/4/103/AFAIABAEGAAg6pulqQYo-fyJ3gUwsAk43wc.png" mode="" class="talk"/>
+        <image src="https://3434729.s80i.faiusr.com/4/103/AFAIABAEGAAgitCzqQYop-36iAYwsAk43AU.png" mode="" class="transmit" />
+      </view>
+      <view class="msgArea">
+        <view class="videoMsg {{speeded == true? 'speeded': ''}}">
+          <text hidden="{{speeded}}">{{item.vid_name}}</text>
+          <text hidden="{{!speeded}}">2.0x快进中</text>
+        </view>
+      </view>
+      <view 
+      class="videobarback"  
+      catchtouchmove="handTime" 
+      catchtouchend="timeChange">
+        <view class="videobar" wx:if="{{play.id == item.id}}" style="width: {{width}};"></view>
+      </view>
+
+    </video>
+  </view>
+ 
+</view>

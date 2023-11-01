@@ -1,0 +1,13 @@
+<!--pages/user/user.wxml-->
+<view class="userAll">
+  <view class="headAll">
+    <button open-type = "chooseAvatar" bind:chooseavatar="onChooseAvatar" class="btn">
+      <image src="{{head}}" mode="" class="head"/>
+    </button>
+    <view class="headWord">
+    <input type="text" placeholder="{{headWord}}" value="{{word}}" maxlength="8" bindblur="nickName"/>
+    </view>
+  </view>
+  <UserInput wx:if="{{!login}}" bind:closing="onClose"></UserInput>
+  <view class="exit" bindtap="exit" wx:if="{{login}}">退出登录</view>
+</view>

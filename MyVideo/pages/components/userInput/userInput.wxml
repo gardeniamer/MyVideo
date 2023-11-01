@@ -1,0 +1,18 @@
+<!--pages/components/userInput/userInput.wxml-->
+<view class="bgc">
+  <view class="login">
+    <view class="phoneInput">
+      <input type="text" placeholder="请在此输入手机号" bindtap="active" data-act="{{0}}"
+      bindinput="phone"class="{{active == 0? 'active': null}}" maxlength="11" value="{{phoneNumber}}" />
+    </view>
+    <view class="password">
+      <input type="password" placeholder="请在此输入密码" bindtap="active" data-act="{{1}}" bindinput="pwd" class="{{active == 1? 'active': null}}" value="{{password}}"/>
+    </view>
+    <view class="confirm">
+      <view class="submit" bindtap="login">
+        登录/注册
+      </view>
+    </view>
+  </view>
+</view>
+
